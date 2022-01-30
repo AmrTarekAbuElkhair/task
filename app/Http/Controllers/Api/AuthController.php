@@ -53,10 +53,10 @@ class AuthController extends Controller
             $verification_Ob->user_id = $user->id;
             $verification_Ob->save();
             return response(res_msg($lang, success(), 405, 'code_sent'));
-//            $data = array('name'=>$usertoverify->name,'code'=>$code);
+//            $data = array('name'=>$usertoverify->name,'email'=>$usertoverify->email,'order_number'=>$usertoverify->order_number);
 //            Mail::send('mail', $data, function($message)use($usertoverify) {
-//                $message->to($usertoverify->email)->subject
-//                ('Verification Code');
+//                $message->to('admin@admin.com')->subject
+//                ('new User');
 //                $message->from('info@troylab.net','task Application');
 //            });
         }else{
@@ -104,13 +104,6 @@ class AuthController extends Controller
                 $verification_Ob->verifications_code = $code;
                 $verification_Ob->user_id = $user->id;
                 $verification_Ob->save();
-                return response(res_msg($lang, success(), 405, 'code_sent'));
-//            $data = array('name'=>$usertoverify->name,'code'=>$code);
-//            Mail::send('mail', $data, function($message)use($usertoverify) {
-//                $message->to($usertoverify->email)->subject
-//                ('Verification Code');
-//                $message->from('info@troylab.net','task Application');
-//            });
                 return response()->json(res_msg($lang, failed(), 405, 'user_not_verified'));
             }
             $user['school_name']=School::where('id',$user->school_id)->select('name')->first()->name;
